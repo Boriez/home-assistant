@@ -125,7 +125,7 @@ class WazeRouteData(object):
             params = WazeRouteCalculator.WazeRouteCalculator(
                 self._origin, self._destination, self._region, None)
             results = params.calc_all_routes_info()
-            best_route = next(iter(results))
+            best_route=sorted(results,key=(lambda key: results[key][0]))[0]
             (duration, distance) = results[best_route]
             best_route_str = bytes(best_route, 'ISO-8859-1').decode('UTF-8')
             self.data['duration'] = duration
