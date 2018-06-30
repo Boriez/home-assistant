@@ -434,6 +434,14 @@ def forgiving_round(value, precision=0):
         # If value can't be converted to float
         return value
 
+def bitwise_and(value, mask):
+    """Round accepted strings."""
+    try:
+        value = int(value) & int(mask)
+        return value
+    except (ValueError, TypeError):
+        # If value can't be converted to float
+        return value
 
 def multiply(value, amount):
     """Filter to convert value to float and multiply it."""
@@ -618,6 +626,7 @@ ENV.filters['regex_match'] = regex_match
 ENV.filters['regex_replace'] = regex_replace
 ENV.filters['regex_search'] = regex_search
 ENV.filters['regex_findall_index'] = regex_findall_index
+ENV.filters['bit_and'] = bitwise_and
 ENV.globals['log'] = logarithm
 ENV.globals['sin'] = sine
 ENV.globals['cos'] = cosine
